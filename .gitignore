@@ -18,3 +18,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# Firebase
+.firebase
+firebase-debug.log
