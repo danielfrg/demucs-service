@@ -25,7 +25,6 @@ onMount(async () => {
 })
 
 authStore.subscribe(async (user) => {
-    console.log(1, user)
     thisUser = user;
 });
 
