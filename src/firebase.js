@@ -4,10 +4,14 @@ let resolve, firebaseInstance, firestoreInstance;
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
-  authDomain: import.meta.env.PUBLIC_AUTH_DOMAIN,
-  projectId: import.meta.env.PUBLIC_PROJECT_ID,
-  storageBucket: import.meta.env.PUBLIC_STORAGE_BUCKET,
-  appId: import.meta.env.PUBLIC_APP_ID,
+  authDomain: "demucs-service.firebaseapp.com",
+  projectId: "demucs-service",
+  storageBucket: "demucs-service.appspot.com",
+  appId: 1:259910459855:web:35a784beb610343b5732ba,
+  // authDomain: import.meta.env.PUBLIC_AUTH_DOMAIN,
+  // projectId: import.meta.env.PUBLIC_PROJECT_ID,
+  // storageBucket: import.meta.env.PUBLIC_STORAGE_BUCKET,
+  // appId: import.meta.env.PUBLIC_APP_ID,
 };
 
 const promise = new Promise((res) => (resolve = res));
