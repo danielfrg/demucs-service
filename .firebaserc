@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "demucs-app"
-  }
+    "default": "demucs-service"
+  },
+  "targets": {}
 }
