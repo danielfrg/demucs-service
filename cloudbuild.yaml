@@ -1,3 +1,9 @@
 steps:
+  - name: node
+    entrypoint: npm
+    args: ["install"]
+  - name: node
+    entrypoint: npm
+    args: ["run", "build"]
   - name: gcr.io/demucs-service/firebase
     args: ["deploy", "--project=demucs-service", "--only=hosting"]
