@@ -8,9 +8,9 @@ steps:
   - name: gcr.io/demucs-service/firebase
     args: ["deploy", "--project=demucs-service", "--only=hosting"]
     env:
-      - "PUBLIC_FIREBASE_API_KEY=$${FIREBASE_API_KEY}"
-    secretEnv: ["FIREBASE_API_KEY"]
+      - "PUBLIC_FIREBASE_API_KEY=$${PUBLIC_FIREBASE_API_KEY}"
+    secretEnv: ["PUBLIC_FIREBASE_API_KEY"]
 availableSecrets:
   secretManager:
     - versionName: projects/demucs-service/secrets/FIREBASE_API_KEY/versions/1
-      env: "FIREBASE_API_KEY"
+      env: "PUBLIC_FIREBASE_API_KEY"
