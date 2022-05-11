@@ -1,8 +1,82 @@
 ---
-import FirebaseLogin from '../components/FirebaseLogin.svelte';
-import Layout from '../components/Layout.astro';
+import BaseHead from "../components/global/BaseHead.astro";
+import UploadFile from "../components/UploadFile.svelte";
 ---
 
-<Layout title="Welcome to Astro.">
-	<FirebaseLogin client:idle />
-</Layout>
+<html lang="en">
+    <head>
+        <BaseHead />
+    </head>
+
+    <body class="w-full h-full bg-blue">
+        <div class="flex flex-col h-screen justify-between">
+            <header
+                class="container mx-auto max-w-screen-sm p-10 m-10 mb-0 pb-3"
+            >
+                <h1 class="text-white text-center text-8xl">
+                    <a href="/">DEMUCS</a>
+                </h1>
+                <h2 class="font-light text-3xl">Music Source Separation</h2>
+            </header>
+
+            <main class="container max-w-4xl mx-auto mb-auto">
+                <UploadFile client:idle />
+            </main>
+
+            <footer class="container mx-auto max-w-screen-md p-5">
+                <p class="text-gray-400 font-light text-xs text-center">
+                    Built by{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://danielfrg.com"
+                    >
+                        Daniel Rodriguez
+                    </a>
+                    .{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://danielfrg.com/blog/2020/10/demucs-app"
+                    >
+                        Read the blogpost
+                    </a>
+                    .{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://hub.docker.com/repository/docker/danielfrg/demucs"
+                    >
+                        Docker container
+                    </a>
+                    .{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://github.com/danielfrg/demucs-app"
+                    >
+                        Code on Github
+                    </a>
+                    .{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://ai.honu.io/papers/demucs/index.html"
+                    >
+                        More info
+                    </a>
+                    ,{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://arxiv.org/abs/1911.13254"
+                    >
+                        original paper
+                    </a>{" "}
+                    and{" "}
+                    <a
+                        class="underline hover:text-white"
+                        href="https://github.com/facebookresearch/demucs"
+                    >
+                        code
+                    </a>
+                    .
+                </p>
+            </footer>
+        </div></body
+    >
+</html>

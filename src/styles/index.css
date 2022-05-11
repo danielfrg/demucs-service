@@ -1,0 +1,31 @@
+header {
+    color: #fff;
+    text-shadow: 0 0 2px #fff, 0 0 1.5px #000, 0 0 1.5px #000;
+    text-align: center;
+}
+
+h1 {
+    font-family: serif;
+    margin: 0;
+    font-size: 6em;
+    font-weight: 500;
+    line-height: 1.2em;
+    letter-spacing: -0.03em;
+    transform: scale(1, 1.5);
+}
+
+h2 {
+    transform: scale(1, 1.5);
+    letter-spacing: -0.06em;
+}
+
+table {
+    margin: 0 auto;
+    table-layout: fixed;
+
+    td.track {
+        width: 500px;
+        max-width: 500px;
+        min-width: 500px;
+    }
+}

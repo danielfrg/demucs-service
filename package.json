@@ -1,6 +1,6 @@
 {
-  "name": "@example/basics",
-  "version": "0.0.1",
+  "name": "demucs-service",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -18,8 +18,10 @@
     "svelte": "^3.48.0"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.2",
     "firebase": "^9.8.0",
     "firebase-tools": "^10.8.0",
-    "firebaseui": "^6.0.1"
+    "firebaseui": "^6.0.1",
+    "postcss-import": "^14.1.0"
   }
 }

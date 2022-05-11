@@ -1,0 +1,21 @@
+---
+// export interface Props {
+//     title: string;
+// }
+
+// const { title } = Astro.props;
+
+const title = "Daniel Rodriguez";
+const year = new Date().getFullYear();
+---
+
+<footer class="container mx-auto max-w-screen-md py-20">
+    <div class="flex flex-wrap">
+        <div class="w-full text-center">
+            <p class="m-3 text-sm font-light text-gray-500">
+                &copy; 2012-{year}
+                {title}
+            </p>
+        </div>
+    </div>
+</footer>
