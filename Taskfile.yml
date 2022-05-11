@@ -1,0 +1,18 @@
+version: "3"
+
+tasks:
+  image:
+    dir: model
+    cmds:
+      - docker build -t demucs-api .
+
+  docker-run:
+    dir: model
+    cmds:
+      - docker run -it -p 8080:8080 demucs-api
+
+  image-push:
+    dir: model
+    cmds:
+      - docker tag demucs-api us-central1-docker.pkg.dev/demucs-service/demucs-api/demucs-api
+      - docker push us-central1-docker.pkg.dev/demucs-service/demucs-api/demucs-api

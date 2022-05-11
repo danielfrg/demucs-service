@@ -1,4 +1,2 @@
 .venv
 data
-js/node_modules
-src/__pycache__

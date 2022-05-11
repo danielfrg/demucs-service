@@ -5,21 +5,28 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 
 from fastapi import FastAPI, Request
-from fastapi.logger import logger
-from fastapi.responses import HTMLResponse
+from fastapi.logger import logger as fp_logger
+from fastapi.responses import HTMLResponse, RedirectResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from config import settings
 from model import Demucs
 
-
 autoload = settings.docker
 outdir = os.path.join(settings.data, "separated")
-model = Demucs(output_dir=outdir, load=autoload)
-
-
-logger.setLevel(logging.DEBUG)
+model = Demucs(output_dir=outdir, load=False)
 
 app = FastAPI()
+
+fp_logger.setLevel(logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+app = FastAPI()
+
+
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request, exc):
+    return HTMLResponse("ERROR: interno")
 
 
 @app.get("/", status_code=200, response_class=HTMLResponse)
@@ -36,6 +43,15 @@ def health():
     prediction requests
     """
     return {"status": "healthy"}
+
+
+@app.get(
+    os.environ.get("AIP_PREDICT_ROUTE", "/predict"),
+    status_code=200,
+    response_class=HTMLResponse,
+)
+async def predict_get():
+    return "/predict is a POST endpoint"
 
 
 @app.post(os.environ.get("AIP_PREDICT_ROUTE", "/predict"), status_code=200)
