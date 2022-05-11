@@ -4,7 +4,6 @@ steps:
       - build
       - "--no-cache"
       - "-t"
-      - us-central1-docker.pkg.dev/demucs-service/firebase/firebase
       - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA"
       - model
       - "-f"
