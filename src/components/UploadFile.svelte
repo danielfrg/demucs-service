@@ -83,7 +83,8 @@ function onSubmit() {
 }
 
 async function processSong(base64File) {
-    const endpoint = "http://3.142.221.238:8080/predict"
+    // const endpoint = "http://3.142.221.238:8080/predict"
+    const endpoint = "https://demucs-api-hwbhnojdya-uc.a.run.app/predict"
     const data = { instances: [{"b64": base64File}] }
 
     processing = true;
