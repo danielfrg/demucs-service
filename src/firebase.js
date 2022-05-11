@@ -14,8 +14,6 @@ const firebaseConfig = {
     // appId: import.meta.env.PUBLIC_APP_ID,
 };
 
-console.log(firebaseConfig);
-
 const promise = new Promise((res) => (resolve = res));
 
 export async function initialize() {

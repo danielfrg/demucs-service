@@ -29,7 +29,6 @@ authStore.subscribe(async (user) => {
 });
 
 async function loginWithGoogle() {
-    console.log("loginWithGoogle")
     const app = await FirebaseSingleton.getInstance()
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
@@ -64,37 +63,103 @@ async function loginWithGoogle() {
         });
 }
 
+let  fileinput;
+let  processing = false;
+let split = null;
+
+function onSubmit() {
+    const file = fileinput.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = e => {
+        const b64File = e.target.result
+        processSong(b64File)
+            .then(data => {
+                split = data;
+            });
+    };
+    reader.onerror = error => console.error(error);
+}
+
+async function processSong(base64File) {
+    const endpoint = "http://3.142.221.238:8080/predict"
+    const data = { instances: [{"b64": base64File}] }
+
+    processing = true;
+    const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
 </script>
 
 <div class="my-4 flex flex-col text-gray-100">
     <div class="bg-gray-700 p-8 text-center">
 
-        {#if thisUser}
-            <p class="text-center my-3">
-                Select a song to be processed: {thisUser.uid}
-            </p>
-        {:else}
-            <div class="mb-10">
-                <p>Sign in with Google to upload files.</p>
-                <button class="my-2" on:click="{loginWithGoogle}">
-                    <img class="w-60" src="/images/btn_google_signin_dark_pressed_web@2x.png" alt="sign-in" />
-                </button>
+        {#if split != null}
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Instrument</th>
+                        <th>Track</th>
+                    </tr>
+                </tbody>
+                {#each Object.entries(split) as [key, value]}
+                    <tr>
+                        <td>{key}</td>
+                        <td class="track">
+                            <audio class="w-full" controls>
+                                <source src={`data:audio/mp3;base64,${value}`} type="audio/mp3" />
+                            </audio>
+                        </td>
+                    </tr>
+                {/each}
+            </table>
+        {:else if processing == true}
+            <div class="flex flex-col justify-center items-center">
+                Processing...
+                <div class="mx-auto lds-ring"><div></div><div></div><div></div><div></div></div>
             </div>
-        {/if}
-        <label>
-            <input
-                type="file"
-                class="file-picker"
+        {:else}
+            {#if thisUser}
+                <div class="my-6 mt-0">
+                    <p class="text-center">
+                        Select a song to be processed:
+                    </p>
+                </div>
+            {:else}
+                <div class="mb-10">
+                    <p>Sign in with Google to upload files.</p>
+                    <button class="my-2" on:click="{loginWithGoogle}">
+                        <img class="w-60" src="/images/btn_google_signin_dark_pressed_web@2x.png" alt="sign-in" />
+                    </button>
+                </div>
+            {/if}
+
+            <label>
+                <input
+                    type="file"
+                    class="file-picker"
+                    accept="audio/*"
+                    disabled={thisUser == null}
+                    bind:this={fileinput}
+                />
+            </label>
+            <button
+                type="submit"
+                class="bg-gray-300 hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded"
                 disabled={thisUser == null}
-            />
-        </label>
-        <button
-            type="submit"
-            class="bg-gray-300 hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded"
-            disabled={thisUser == null}
-        >
-            Submit
-        </button>
+                on:click="{onSubmit}"
+            >
+                Submit
+            </button>
+        {/if}
 
     </div>
 </div>

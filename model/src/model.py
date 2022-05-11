@@ -1,3 +1,4 @@
+import base64
 import hashlib
 import os
 import sys
@@ -63,14 +64,7 @@ class Demucs(object):
 
         ref = wav.mean(0)
         wav = (wav - ref.mean()) / ref.std()
-        # sources = apply_model(
-        #     self.model,
-        #     wav,
-        #     shifts=self.shifts,
-        #     split=self.split,
-        #     overlap=self.overlap,
-        #     progress=True,
-        # )
+
         sources = apply_model(
             self.model,
             wav[None],
@@ -84,7 +78,6 @@ class Demucs(object):
         sources = sources * ref.std() + ref.mean()
 
         track_folder = out
-        # track_folder = out / track.name.rsplit(".", 1)[0]
         track_folder.mkdir(exist_ok=True)
 
         generated_files = {}
@@ -108,6 +101,12 @@ class Demucs(object):
                 ta.save(wavname, source, sample_rate=self.model.samplerate)
 
             generated_files[name] = stem + ".mp3"
+
+        # Base64 encode the files
+
+        for source, fpath in generated_files.items():
+            with open(fpath, "rb") as f:
+                generated_files[source] = base64.b64encode(f.read()).decode("utf-8")
 
         return generated_files
 

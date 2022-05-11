@@ -6,7 +6,8 @@ from tempfile import NamedTemporaryFile
 
 from fastapi import FastAPI, Request
 from fastapi.logger import logger as fp_logger
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from config import settings
@@ -16,17 +17,19 @@ autoload = settings.docker
 outdir = os.path.join(settings.data, "separated")
 model = Demucs(output_dir=outdir, load=False)
 
-app = FastAPI()
-
 fp_logger.setLevel(logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-
-@app.exception_handler(StarletteHTTPException)
-async def custom_http_exception_handler(request, exc):
-    return HTMLResponse("ERROR: interno")
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/", status_code=200, response_class=HTMLResponse)

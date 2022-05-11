@@ -1,6 +1,11 @@
 version: "3"
 
 tasks:
+  run-model:
+    dir: model/src
+    cmds:
+      - uvicorn api:app --host 0.0.0.0 --port 8080 --reload
+
   image:
     dir: model
     cmds:
