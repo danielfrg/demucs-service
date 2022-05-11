@@ -1,0 +1,9 @@
+name: demucs-docs
+channel:
+  - conda-forge
+dependencies:
+  - python>=3.8,<4
+  - pip
+  - pip:
+      - mkdocs
+      - mkdocs-material
