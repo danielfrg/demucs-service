@@ -5,11 +5,10 @@ steps:
   - name: node
     entrypoint: npm
     args: ["install"]
+
   - name: node
     entrypoint: npm
     args: ["run", "build"]
-    # env:
-    #   - "PUBLIC_FIREBASE_API_KEY=$${PUBLIC_FIREBASE_API_KEY}"
     secretEnv: ["PUBLIC_FIREBASE_API_KEY"]
 
   # ----------------------------------------------------------------------------
@@ -22,8 +21,8 @@ steps:
 
   - name: python
     dir: docs
-    entrypoint: mkdocs
-    args: ["build"]
+    entrypoint: python
+    args: ["-m", "mkdocs", "build"]
 
   # ----------------------------------------------------------------------------
   # Deploy to Firebase
