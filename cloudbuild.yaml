@@ -8,7 +8,7 @@ steps:
     # env:
     #   - "PUBLIC_FIREBASE_API_KEY=$${PUBLIC_FIREBASE_API_KEY}"
     secretEnv: ["PUBLIC_FIREBASE_API_KEY"]
-  - name: gcr.io/demucs-service/firebase
+  - name: us-central1-docker.pkg.dev/demucs-service/firebase/firebase
     args: ["deploy", "--project=demucs-service", "--only=hosting"]
 availableSecrets:
   secretManager:
