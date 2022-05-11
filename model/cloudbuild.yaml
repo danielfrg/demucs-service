@@ -34,7 +34,7 @@ options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
   _LOCATION: us-central1
-  _REPOSITORY: demucs-service
+  _REPOSITORY: demucs-api
   _IMAGE: demucs-api
   _DEPLOY_REGION: us-central1
   _SERVICE_NAME: demucs-api
