@@ -85,13 +85,13 @@ async function loginWithGoogle() {
             <input
                 type="file"
                 class="file-picker"
-                disabled={!thisUser != null}
+                disabled={thisUser == null}
             />
         </label>
         <button
             type="submit"
             class="bg-gray-300 hover:bg-gray-100 text-gray-800 py-1 px-4 border border-gray-400 rounded"
-            disabled={!thisUser != null}
+            disabled={thisUser == null}
         >
             Submit
         </button>

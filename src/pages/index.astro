@@ -1,5 +1,6 @@
 ---
 import BaseHead from "../components/global/BaseHead.astro";
+import SiteFooter from "../components/global/SiteFooter.astro";
 import UploadFile from "../components/UploadFile.svelte";
 ---
 
@@ -17,66 +18,14 @@ import UploadFile from "../components/UploadFile.svelte";
                     <a href="/">DEMUCS</a>
                 </h1>
                 <h2 class="font-light text-3xl">Music Source Separation</h2>
+                <h3 class="font-light text-lg">Runs on GCP</h3>
             </header>
 
             <main class="container max-w-4xl mx-auto mb-auto">
                 <UploadFile client:idle />
             </main>
 
-            <footer class="container mx-auto max-w-screen-md p-5">
-                <p class="text-gray-400 font-light text-xs text-center">
-                    Built by{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://danielfrg.com"
-                    >
-                        Daniel Rodriguez
-                    </a>
-                    .{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://danielfrg.com/blog/2020/10/demucs-app"
-                    >
-                        Read the blogpost
-                    </a>
-                    .{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://hub.docker.com/repository/docker/danielfrg/demucs"
-                    >
-                        Docker container
-                    </a>
-                    .{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://github.com/danielfrg/demucs-app"
-                    >
-                        Code on Github
-                    </a>
-                    .{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://ai.honu.io/papers/demucs/index.html"
-                    >
-                        More info
-                    </a>
-                    ,{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://arxiv.org/abs/1911.13254"
-                    >
-                        original paper
-                    </a>{" "}
-                    and{" "}
-                    <a
-                        class="underline hover:text-white"
-                        href="https://github.com/facebookresearch/demucs"
-                    >
-                        code
-                    </a>
-                    .
-                </p>
-            </footer>
-        </div></body
-    >
+            <SiteFooter />
+        </div>
+    </body>
 </html>

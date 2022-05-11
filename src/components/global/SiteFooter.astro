@@ -9,13 +9,30 @@ const title = "Daniel Rodriguez";
 const year = new Date().getFullYear();
 ---
 
-<footer class="container mx-auto max-w-screen-md py-20">
-    <div class="flex flex-wrap">
-        <div class="w-full text-center">
-            <p class="m-3 text-sm font-light text-gray-500">
-                &copy; 2012-{year}
-                {title}
-            </p>
-        </div>
-    </div>
+<footer class="container mx-auto max-w-screen-md p-5">
+    <p class="text-gray-400 font-light text-xs text-center">
+        Built by{" "}
+        <a class="underline hover:text-white" href="https://danielfrg.com"
+            >Daniel Rodriguez</a
+        >.{" "}
+        <a class="underline hover:text-white" href="/docs">Documentation</a
+        >.{" "}
+        <a
+            class="underline hover:text-white"
+            href="https://github.com/danielfrg/demucs-service">Code on Github</a
+        >.{" "}
+        <a
+            class="underline hover:text-white"
+            href="https://ai.honu.io/papers/demucs/index.html">More info</a
+        >,{" "}
+        <a
+            class="underline hover:text-white"
+            href="https://arxiv.org/abs/1911.13254">original paper</a
+        >{" "}
+        and{" "}
+        <a
+            class="underline hover:text-white"
+            href="https://github.com/facebookresearch/demucs">code</a
+        >. &copy; 2020-{year}
+    </p>
 </footer>
