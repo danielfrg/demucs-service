@@ -4,7 +4,7 @@ steps:
       - build
       - "--no-cache"
       - "-t"
-      - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA"
+      - "${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:$COMMIT_SHA"
       - model
       - "-f"
       - model/Dockerfile
@@ -12,7 +12,7 @@ steps:
   - name: gcr.io/cloud-builders/docker
     args:
       - push
-      - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA"
+      - "${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:$COMMIT_SHA"
     id: Push
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:slim"
     args:
@@ -21,7 +21,7 @@ steps:
       - update
       - $_SERVICE_NAME
       - "--platform=managed"
-      - "--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA"
+      - "--image=${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:$COMMIT_SHA"
       - >-
         --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID,$_LABELS
       - "--region=$_DEPLOY_REGION"
@@ -29,16 +29,18 @@ steps:
     id: Deploy
     entrypoint: gcloud
 images:
-  - "$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA"
+  - "${_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:$COMMIT_SHA"
 options:
   substitutionOption: ALLOW_LOOSE
 substitutions:
+  _LOCATION: us-central1
+  _REPOSITORY: demucs-service
+  _IMAGE: demucs-api
   _DEPLOY_REGION: us-central1
-  _GCR_HOSTNAME: us-central1-docker.pkg.dev
+  _SERVICE_NAME: demucs-api
   _PLATFORM: managed
   _LABELS: gcb-trigger-id=145cda94-f875-4f8c-ba2a-6b7dc57074a5
   _TRIGGER_ID: 145cda94-f875-4f8c-ba2a-6b7dc57074a5
-  _SERVICE_NAME: demucs-api
 tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
