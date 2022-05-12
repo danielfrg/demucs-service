@@ -4,11 +4,11 @@ import os
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
+import torch as th
 from fastapi import FastAPI, Request
 from fastapi.logger import logger as fp_logger
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from config import settings
 from model import Demucs
@@ -19,6 +19,8 @@ model = Demucs(output_dir=outdir, load=False)
 
 fp_logger.setLevel(logging.DEBUG)
 logger = logging.getLogger(__name__)
+
+th.hub.set_dir(settings.models)
 
 app = FastAPI()
 

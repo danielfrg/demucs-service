@@ -56,15 +56,17 @@ async function loginWithGoogle() {
                         const credential = GoogleAuthProvider.credentialFromError(error);
                     });
         })
-        .catch((error) => {
+        .catch((err) => {
             // Handle Errors here.
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            const errorCode = err.code;
+            const errorMessage = err.message;
+            errors = err;
         });
 }
 
-let  fileinput;
-let  processing = false;
+let fileinput = null;
+let errors = {};
+let processing: boolean = false;
 let split = null;
 
 function onSubmit() {
@@ -73,13 +75,21 @@ function onSubmit() {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = e => {
-        const b64File = e.target.result
+        const b64File = e.target.result.split(',')[1];
+
         processSong(b64File)
             .then(data => {
+                alert("1")
                 split = data;
+            })
+            .catch(err => {
+                errors["fetch"] = err.message
             });
     };
-    reader.onerror = error => console.error(error);
+    reader.onerror = err => {
+        console.error(err);
+        errors["query"] = err;
+    }
 }
 
 async function processSong(base64File) {
@@ -88,22 +98,33 @@ async function processSong(base64File) {
     const data = { instances: [{"b64": base64File}] }
 
     processing = true;
-    const response = await fetch(endpoint, {
+    const promise = fetch(endpoint, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
+        body: JSON.stringify(data)
+    })
+
+    return promise
+}
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
 }
 
 </script>
 
 <div class="my-4 flex flex-col text-gray-100">
     <div class="bg-gray-700 p-8 text-center">
-
-        {#if split != null}
+        {#if !isEmpty(errors) }
+            <div class="flex flex-col justify-center items-center">
+                {#each Object.entries(errors) as [key, value]}
+                    <p>{key} error:</p>
+                    <p>{value}</p>
+                {/each}
+            </div>
+        {:else if split != null}
             <table>
                 <tbody>
                     <tr>
