@@ -45,3 +45,4 @@ tags:
   - gcp-cloud-build-deploy-cloud-run
   - gcp-cloud-build-deploy-cloud-run-managed
   - demucs-api
+timeout: 900s
