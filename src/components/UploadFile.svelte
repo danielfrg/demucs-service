@@ -78,9 +78,10 @@ function onSubmit() {
         const b64File = e.target.result.split(',')[1];
 
         processSong(b64File)
+            .then(response => response.json())
             .then(data => {
+                console.log(data)
                 split = data;
-                console.log(split)
             })
             .catch(err => {
                 errors["fetch"] = err.message
