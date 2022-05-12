@@ -9,6 +9,8 @@ steps:
   - name: node
     entrypoint: npm
     args: ["run", "build"]
+    env:
+      - "PUBLIC_VERSION=${SHORT_SHA}"
     secretEnv: ["PUBLIC_FIREBASE_API_KEY"]
 
   # ----------------------------------------------------------------------------

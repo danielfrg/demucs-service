@@ -24,7 +24,13 @@ th.hub.set_dir(settings.models)
 
 app = FastAPI()
 
-origins = ["*"]
+origins = [
+    "http://localhost:3000",
+    "http://localhost:8080",
+    "https://demucs.danielfrg.com",
+    "https://demucs-service.web.app",
+    "https://demucs-service.firebaseapp.com",
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,

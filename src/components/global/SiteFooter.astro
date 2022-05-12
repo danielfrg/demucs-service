@@ -7,6 +7,8 @@
 
 const title = "Daniel Rodriguez";
 const year = new Date().getFullYear();
+
+const version = import.meta.env.PUBLIC_VERSION;
 ---
 
 <footer class="container mx-auto max-w-screen-md p-5">
@@ -33,6 +35,6 @@ const year = new Date().getFullYear();
         <a
             class="underline hover:text-white"
             href="https://github.com/facebookresearch/demucs">code</a
-        >. &copy; 2020-{year}
+        >. v{version}. &copy; 2020-{year}
     </p>
 </footer>
