@@ -79,8 +79,8 @@ function onSubmit() {
 
         processSong(b64File)
             .then(data => {
-                alert("1")
                 split = data;
+                console.log(split)
             })
             .catch(err => {
                 errors["fetch"] = err.message
