@@ -1,16 +1,47 @@
 site_name: DEMUCS service
 site_dir: ../dist/docs
+repo_url: https://github.com/danielfrg/demucs-service
+site_url: https://docs.danielfrg.com/docs/
+
+nav:
+    - Home:
+      - Demucs: 'index.md'
+      - API: 'api.md'
+    - Architecture:
+      - Home: 'arch/index.md'
+      - Firebase: 'arch/firebase.md'
+      - Cloud Build: 'arch/cloud-build.md'
+      - Cloud Run: 'arch/cloud-run.md'
+      - Web Application: 'arch/webapp.md'
+      - Model API: 'arch/model-api.md'
 
 theme:
   name: material
+  icon:
+    logo: material/music-note
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - content.code.annotate
   palette:
     - scheme: default
       primary: deep orange
+      accent: red
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
     - scheme: slate
       primary: deep orange
+      accent: red
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      auto_title: true

@@ -1,17 +1,52 @@
-# Welcome to MkDocs
+# Demucs - Music Source Separation
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+The Demucs is a free service that takes a song and splits it into 4 different tracks:
+drums, bass, other and vocals.
 
-## Commands
+[![demucs-service](/docs/public/images/demucs-web.png)](https://demucs.danielfrg.com)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Example
 
-## Project layout
+Original:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+<audio controls="">
+    <source src="/docs/public/sample/mixture.mp3" type="audio/mp3">
+</audio>
+
+Output:
+
+<table>
+<tbody>
+    <tr>
+        <th>Instrument</th>
+        <th>Audio</th>
+    </tr>
+    <tr>
+        <td>Drums</td>
+        <td><audio controls=""><source src="/docs/public/sample/drums.mp3" type="audio/mp3"></audio></td>
+    </tr>
+    <tr>
+        <td>Bass</td>
+        <td><audio controls=""><source src="/docs/public/sample/bass.mp3" type="audio/mp3"></audio></td>
+    </tr>
+    <tr>
+        <td>Other</td>
+        <td><audio controls=""><source src="/docs/public/sample/other.mp3" type="audio/mp3"></audio></td>
+    </tr>
+    <tr>
+        <td>Vocals</td>
+        <td><audio controls=""><source src="/docs/public/sample/vocals.mp3" type="audio/mp3"></audio></td>
+    </tr>
+</tbody>
+</table>
+
+## Processing
+
+Any song can be processed but the results might vary depending on the complexity
+of the song.
+
+Processing time is about 5 minutes for a 3-4 min song.
+
+## Architecture
+
+Take a look on how the service runs on the [Architecture section](arch).
