@@ -21,8 +21,17 @@ import UploadFile from "../components/UploadFile.svelte";
                 <h3 class="font-light text-lg">Runs on GCP</h3>
             </header>
 
-            <main class="container max-w-4xl mx-auto mb-auto">
+            <main
+                class="container max-w-4xl mx-auto mb-auto text-white text-center"
+            >
                 <UploadFile client:idle />
+                <p class="text-sm">
+                    Sample: <a
+                        class="underline"
+                        href="/sample/mixture-3s.mp3"
+                        download>mixture-3s.mp3</a
+                    >
+                </p>
             </main>
 
             <SiteFooter />

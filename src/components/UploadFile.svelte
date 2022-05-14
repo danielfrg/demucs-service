@@ -148,6 +148,7 @@ function isEmpty(obj) {
             <div class="flex flex-col justify-center items-center">
                 Processing...
                 <div class="mx-auto lds-ring"><div></div><div></div><div></div><div></div></div>
+                <p class="text-sm">This may take up to 5 mins depending on the lenght of the song</p>
             </div>
         {:else}
             {#if thisUser}
