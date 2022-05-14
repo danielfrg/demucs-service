@@ -10,14 +10,16 @@ RUN echo "source activate demucs-api" > ~/.bashrc
 ENV PATH /opt/conda/envs/demucs-api/bin:$PATH
 RUN ln /opt/conda/envs/demucs-api/lib/libopenh264.so.6 /opt/conda/envs/demucs-api/lib/libopenh264.so.5
 
-# Location for the serialized models
-RUN mkdir -p /models
-COPY models /models
-
-# Location for the output files
+# Download models
 RUN mkdir -p /data
-
+RUN mkdir -p /models
 RUN mkdir -p /app
+
+COPY src/config.py /app/config.py
+COPY src/download.py /app/download.py
+RUN python /app/download.py
+
+# Copy source code
 COPY src /app
 WORKDIR /app
 

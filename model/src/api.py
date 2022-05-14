@@ -1,4 +1,5 @@
 import base64
+import json
 import logging
 import os
 from pathlib import Path
@@ -8,7 +9,7 @@ import torch as th
 from fastapi import FastAPI, Request
 from fastapi.logger import logger as fp_logger
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
 
 from config import settings
 from model import Demucs
@@ -71,20 +72,29 @@ async def predict(request: Request):
     instances = body["instances"]
 
     for instance in instances:
-        return infer(instance["b64"])
+        fpath = infer(instance["b64"])
+        break
+
+    def iterfile():
+        with open(fpath, mode="rb") as file_like:
+            yield from file_like
+
+    return StreamingResponse(iterfile(), media_type="application/json")
 
 
 def infer(file_content):
     model.load()
 
+    generated_files = None
     with NamedTemporaryFile(delete=False) as tmp:
         file_content = base64.b64decode(file_content)
         tmp.write(file_content)
         tmp.flush()
 
         fpath = Path(tmp.name)
-
-        # exists, unique_id = model.cached(fpath)
-
         generated_files = model.separate(fpath)
-        return generated_files
+
+    tmpfile = NamedTemporaryFile(delete=False, mode="w+")
+    json.dump(generated_files, tmpfile)
+    tmpfile.flush()
+    return Path(tmpfile.name)
