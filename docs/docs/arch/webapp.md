@@ -5,10 +5,8 @@ The application uses [Astro](https://astro.build/) as a static site generator an
 
 ## Astro
 
-The web app is a SPA (Single Page Application).
-
-Astro produces static HTML but we also have some javascript code that
-can we need to tell Astro to include:
+[Astro](https://astro.build/) produces static HTML content and has the ability to interact with different JS
+frameworks for specific parts of the page ([island architecture](https://jasonformat.com/islands-architecture/)).
 
 ```html hl_lines="2"
 <main class="container max-w-4xl mx-auto mb-auto">
@@ -37,14 +35,16 @@ const firebaseConfig = {
 
 ## Svelte
 
-We use Svelte to handle the different interactive components:
+We use [Svelte](https://svelte.dev/) to handle the different interactive components:
 
 - Login
 - Enable/disable buttons
 - File Upload
-- Query que model API endpoint
+- Query the model [API endpoint](/docs/api)
 
-We have a single component that handles the authentication
+We have a single component that handles the different states of the app:
+
+Authentication is required before uploading any files:
 
 ```javascript
 let thisUser : firebase.UserInfo = null;
@@ -61,7 +61,6 @@ onMount(async () => {
             authStore.set(null)
         }
     });
-
 })
 ```
 
@@ -78,7 +77,7 @@ Enable and disable the buttons when the user is not logged in.
 </button>
 ```
 
-We also need a bit of logic to read the file and send it to the API.
+Read the selected file and send it to the [API endpoint](/docs/api).
 
 ```javascript title="Read file in Base 64"
 function onSubmit() {
@@ -106,7 +105,7 @@ function onSubmit() {
 }
 ```
 
-```javascript title="Fetch model API"
+```javascript title="Query model API"
 async function processSong(base64File) {
     const endpoint = "https://demucs-api-hwbhnojdya-uc.a.run.app/predict"
     const data = { instances: [{"b64": base64File}] }

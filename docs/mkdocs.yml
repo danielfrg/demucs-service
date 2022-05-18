@@ -12,6 +12,7 @@ nav:
       - Firebase: 'arch/firebase.md'
       - Cloud Build: 'arch/cloud-build.md'
       - Cloud Run: 'arch/cloud-run.md'
+      - Artifact Registry: 'arch/artifact-registry.md'
       - Web Application: 'arch/webapp.md'
       - Model API: 'arch/model-api.md'
 

@@ -7,7 +7,7 @@ Services used:
 - [Firebase](firebase): Hosting and authentication
 - [Cloud Build](cloud-build): CI/CD
 - [Cloud Run](cloud-run): Serverless prediction API
-- [Artifact Registry](cloud-run): Serverless prediction API
+- [Artifact Registry](artifact-registry): Serverless prediction API
 
 Technologies:
 
