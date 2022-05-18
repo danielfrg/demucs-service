@@ -2,12 +2,18 @@
 
 The Demucs service runs in the [Google Cloud Platform](https://cloud.google.com/).
 
+<figure markdown>
+![gcp](https://www.freecodecamp.org/news/content/images/2020/10/gcp.png){: style="height:200px"}
+</figure>
+
+
 Services used:
 
 - [Firebase](firebase): Hosting and authentication
 - [Cloud Build](cloud-build): CI/CD
-- [Cloud Run](cloud-run): Serverless prediction API
-- [Artifact Registry](artifact-registry): Serverless prediction API
+- [Secret Manager](cloud-build/#secret-manager)
+- [Cloud Run](cloud-run): Serverless model API
+- [Artifact Registry](artifact-registry): Hosting for the artifacts
 
 Technologies:
 

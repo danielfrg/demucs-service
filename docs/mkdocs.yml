@@ -21,9 +21,10 @@ theme:
   icon:
     logo: material/music-note
   features:
+    - content.code.annotate
     - navigation.instant
     - navigation.tabs
-    - content.code.annotate
+    - navigation.tracking
   palette:
     - scheme: default
       primary: red
@@ -47,3 +48,5 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
       auto_title: true
+  - toc:
+      permalink: true
