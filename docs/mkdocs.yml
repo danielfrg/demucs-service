@@ -25,13 +25,13 @@ theme:
     - content.code.annotate
   palette:
     - scheme: default
-      primary: deep orange
+      primary: red
       accent: red
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
     - scheme: slate
-      primary: deep orange
+      primary: red
       accent: red
       toggle:
         icon: material/toggle-switch-off-outline
@@ -40,8 +40,9 @@ theme:
 markdown_extensions:
   - attr_list
   - md_in_html
-  - pymdownx.highlight:
-      anchor_linenums: true
+  - admonition
+  - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
+      anchor_linenums: true
       auto_title: true

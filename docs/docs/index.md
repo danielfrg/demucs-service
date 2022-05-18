@@ -47,6 +47,11 @@ of the song.
 
 Processing time is about 5 minutes for a 3-4 min song.
 
+## API
+
+We provide a REST API to programmatically convert songs and examples on how to use
+it. See: [API](/docs/api).
+
 ## Architecture
 
-Take a look on how the service runs on the [Architecture section](arch).
+Take a look on how the service runs on the [Architecture section](/docs/mkarch).
