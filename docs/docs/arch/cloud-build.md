@@ -16,6 +16,11 @@ and we have to workflows that deploy to:
 <figcaption>Cloud Build Dashboard</figcaption>
 </figure>
 
+<figure markdown>
+![](/docs/public/images/cloud-build-list.png)
+<figcaption>Cloud Build list of builds</figcaption>
+</figure>
+
 ## Workflows
 
 Each workflow has is based on its own `cloudbuild.yml`
